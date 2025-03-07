@@ -1,0 +1,19 @@
+<div class="main-page-container">
+
+  <div class="grades-section">
+    <h2>Your Assigned Grades</h2>
+
+    <div *ngIf="grades.length > 0; else noGrades" class="grades-grid">
+      <div *ngFor="let grade of grades" class="grade-item">
+        <h3 class="grade-title">{{ grade.gradeName }}</h3>
+        <button class="view-students-button" (click)="viewStudents(grade.gradeId)">
+          View Students
+        </button>
+      </div>
+    </div>
+
+    <ng-template #noGrades>
+      <p>No grades have been assigned to you yet.</p>
+    </ng-template>
+  </div>
+</div>

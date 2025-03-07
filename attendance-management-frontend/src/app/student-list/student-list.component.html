@@ -1,0 +1,55 @@
+<div class="student-list-container">
+  <h1>{{ gradeName }}</h1>
+  <p id="date">{{ selectedDate }}</p>
+
+  <div *ngIf="students.length > 0; else noStudents">
+    <table mat-table [dataSource]="students" class="mat-elevation-z8">
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let student; let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="studentId">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let student"> {{ student.studentId }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="studentName">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let student"> {{ student.studentName }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="present">
+        <th mat-header-cell *matHeaderCellDef> Present </th>
+        <td mat-cell *matCellDef="let student">
+          <mat-checkbox class="checkboxes" [(ngModel)]="student.present" [disabled]="student.disabled"></mat-checkbox>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+
+  <div *ngIf="!attendanceSaved" class="save-attendance-buttons">
+    <button
+      (click)="saveAttendance()"
+      [disabled]="isSaveDisabled()"
+    >
+      Save Attendance
+    </button>
+  </div>
+
+  <div class="download-report-go-back-buttons">
+    <button (click)="generateReport()">
+      Download Report
+    </button>
+    <button routerLink="/main-page">
+      Back to Classes
+    </button>
+  </div>
+
+  <ng-template #noStudents>
+    <p>No students are assigned to this grade.</p>
+  </ng-template>
+</div>

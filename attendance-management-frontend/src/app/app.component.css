@@ -1,0 +1,11 @@
+.body{
+  background-color: #7ab3b2;
+}
+
+h1 {
+  font-family: "Inconsolata", monospace;
+  font-size: 2em;
+  text-align: center;
+  letter-spacing: 5px;
+  color: #5b5b5b;
+}
